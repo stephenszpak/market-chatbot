@@ -1,0 +1,20 @@
+# Elixir build
+/_build
+/deps
+*.ez
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Widget build (generated in container)
+assets/widget/dist
+
+# Misc
+.git
+.gitignore
+.DS_Store
+docker-compose.yml
+README*
+

@@ -1,0 +1,41 @@
+# Elixir / Mix
+/_build/
+/deps/
+/cover/
+*.ez
+erl_crash.dump
+.elixir_ls/
+
+# Phoenix static assets (built)
+/priv/static/*
+!/priv/static/.keep
+
+# Config secrets (if any are created locally)
+/config/*.secret.exs
+
+# Node / Vite (widget)
+/assets/widget/node_modules/
+/assets/widget/dist/
+/assets/widget/.eslintcache
+/assets/widget/npm-debug.log*
+/assets/widget/yarn-error.log*
+/assets/widget/pnpm-debug.log*
+/assets/widget/.env
+/assets/widget/.env.*.local
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.iml
+
+# Docker / runtime
+docker-compose.override.yml
+/.env
+/.env.local
+/tmp/
+.tool-versions
+

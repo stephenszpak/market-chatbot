@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "4000:4000"
+    environment:
+      - MIX_ENV=dev
+      - SECRET_KEY_BASE=devsecretdevsecretdevsecretdevsecretdevsecretdevsecret12
+      - PORT=4000
+    volumes:
+      - .:/app:cached
+      - deps:/app/deps
+      - build:/app/_build
+      - widget_node_modules:/app/assets/widget/node_modules
+    command: ["./bin/dev"]
+    # Speeds up file change notifications on macOS/Windows
+    # use polling for Vite if needed: VITE_FORCE_POLLING=1
+    tty: true
+    stdin_open: true
+
+volumes:
+  deps:
+  build:
+  widget_node_modules:
+

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Start Vite build in watch mode writing into priv/static/ab_widget,
+# then start Phoenix dev server with code reload + live reload.
+
+cleanup() {
+  if [[ -n "${WIDGET_PID:-}" ]]; then
+    kill "$WIDGET_PID" 2>/dev/null || true
+  fi
+}
+trap cleanup EXIT INT TERM
+
+echo "[dev] starting widget build watcher..."
+(
+  cd assets/widget
+  npm install --no-audit --no-fund
+  npm run dev:watch
+) &
+WIDGET_PID=$!
+
+echo "[dev] ensuring mix deps are installed..."
+mix deps.get
+
+echo "[dev] starting phoenix server..."
+exec mix phx.server

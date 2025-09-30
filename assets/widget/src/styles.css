@@ -1,0 +1,14 @@
+.fab-stack{position:fixed;right:16px;bottom:24px;display:flex;flex-direction:column;gap:12px;z-index:10000}
+.fab-indicator{position:absolute;left:0;opacity:0;width:0;height:90px;background:#1e9bd7;border-radius:3px}
+.fab-indicator.visible{left:-8px;opacity:1;width:5px}
+.fab-indicator,.fab-indicator.visible{transition-property:top,opacity,left,width;transition-duration:.33s;transition-timing-function:ease;transition-delay:.33s,0s,.33s,0s}
+.fab{width:40px;height:90px;border-radius:0;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer;border:none}
+.fab i{font-size:18px}
+.chat-drawer{position:fixed;right:calc(16px + 40px + 12px);bottom:24px;height:50vh;width:min(560px,calc(100vw - (16px + 40px + 12px) - 16px));background:#fff;box-shadow:-24px 0 48px rgba(0,0,0,.2);transform:translateX(100%);transition:transform .25s ease;z-index:9999;display:flex;flex-direction:column;border-radius:10px;overflow:hidden}
+.chat-drawer.open{transform:translateX(0)}
+.chat-header{padding:12px 16px;border-bottom:1px solid #e6e6e6;display:flex;align-items:center;justify-content:space-between;font-weight:600}
+.chat-body{padding:12px 16px;flex:1;overflow:auto}
+.msg{margin:12px 0;line-height:1.5}
+.msg.user{text-align:right}
+.chat-input{padding:12px 16px;border-top:1px solid #e6e6e6;display:flex;gap:12px}
+.chat-input input{flex:1;padding:10px 12px;border:1px solid #d9d9d9;border-radius:8px}
