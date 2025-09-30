@@ -32,6 +32,10 @@ COPY lib ./lib
 RUN mkdir -p priv/static/ab_widget
 COPY --from=widget_builder /build/widget/dist/ ./priv/static/ab_widget/
 
+# Copy fonts into Phoenix static directory
+RUN mkdir -p priv/static/fonts
+COPY assets/fonts/ ./priv/static/fonts/
+
 # Compile and build release
 RUN mix compile
 RUN mix release

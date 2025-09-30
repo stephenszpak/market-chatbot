@@ -6,7 +6,7 @@ defmodule AppWeb.Endpoint do
     at: "/",
     from: :app,
     gzip: false,
-    only: ~w(ab_widget)
+    only: ~w(ab_widget fonts)
 
   if Application.compile_env(:app, AppWeb.Endpoint)[:code_reloader] do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
