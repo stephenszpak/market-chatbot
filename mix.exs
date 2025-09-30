@@ -26,11 +26,15 @@ defmodule App.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7"},
+      {:ecto, "~> 3.11"},
+      {:ecto_sql, "~> 3.11"},
+      {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 3.3"},
       {:phoenix_pubsub, "~> 2.1"},
       {:phoenix_template, "~> 1.0"},
       {:plug_cowboy, "~> 2.6"},
       {:jason, "~> 1.4"},
+      {:req, "~> 0.5"},
       {:telemetry, "~> 1.2"},
       {:phoenix_live_reload, "~> 1.3", only: :dev}
     ]

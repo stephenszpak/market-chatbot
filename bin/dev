@@ -39,5 +39,9 @@ FONTS_PID=$!
 echo "[dev] ensuring mix deps are installed..."
 mix deps.get
 
+echo "[dev] ensuring database is created and migrated..."
+mix ecto.create || true
+mix ecto.migrate
+
 echo "[dev] starting phoenix server..."
 exec mix phx.server

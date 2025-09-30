@@ -1,5 +1,10 @@
 import Config
 
+config :app, App.Repo,
+  url: System.get_env("DATABASE_URL") || "ecto://postgres:postgres@localhost:5432/app_dev",
+  pool_size: 10,
+  show_sensitive_data_on_connection_error: true
+
 config :app, AppWeb.Endpoint,
   http: [ip: {0, 0, 0, 0}, port: 4000],
   check_origin: false,

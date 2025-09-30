@@ -68,7 +68,7 @@ CMD ["./rel/app/bin/app", "start"]
 # 4) Optional: Dev target for simple local runs (no hot-reload)
 FROM hexpm/elixir:1.15.7-erlang-26.2.5-debian-bookworm-20240423 AS dev
 WORKDIR /app
-RUN apt-get update && apt-get install -y --no-install-recommends git curl inotify-tools \
+RUN apt-get update && apt-get install -y --no-install-recommends git curl inotify-tools build-essential \
   && rm -rf /var/lib/apt/lists/*
 # Add Node.js from official image for building widget
 COPY --from=node:20-bullseye /usr/local /usr/local

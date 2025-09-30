@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
-type Message = { id: string; role: 'assistant' | 'user'; text: string }
+type Link = { fundName: string; url: string; ticker?: string }
+type Message = { id: string; role: 'assistant' | 'user'; text: string; results?: Link[] }
 
 function uid() { return Math.random().toString(36).slice(2) }
 
@@ -37,7 +38,12 @@ const AB: React.FC = () => {
         body: JSON.stringify({ question: q })
       })
       const data = await res.json()
-      const assistantMsg: Message = { id: uid(), role: 'assistant', text: String(data.answer ?? '') }
+      const assistantMsg: Message = {
+        id: uid(),
+        role: 'assistant',
+        text: String(data.answer ?? ''),
+        results: Array.isArray(data.results) ? data.results : undefined
+      }
       setMessages(prev => [...prev, assistantMsg])
     } catch (e) {
       const err: Message = { id: uid(), role: 'assistant', text: 'Sorry, something went wrong.' }
@@ -71,14 +77,27 @@ const AB: React.FC = () => {
       {open && (
         <aside className="chat-drawer open" role="dialog" aria-modal="true" aria-label="AB Insights Assistant">
           <div className="chat-header">
-            <div>AB Insights Assistant</div>
+            <div>AB Insights & Fund Assistant</div>
           <button className="fab" style={{ width: 32, height: 32, borderRadius: 0 }} aria-label="Close" onClick={() => setOpen(false)}>
             ×
           </button>
           </div>
           <div className="chat-body" ref={bodyRef}>
             {messages.map(m => (
-              <div key={m.id} className={`msg ${m.role}`}>{m.text}</div>
+              <div key={m.id} className={`msg ${m.role}`}>
+                <div>{m.text}</div>
+                {m.role === 'assistant' && m.results && m.results.length > 0 && (
+                  <div style={{ marginTop: 8 }}>
+                    {m.results.map((r, idx) => (
+                      <div key={idx} style={{ margin: '6px 0' }}>
+                        <a href={r.url} target="_blank" rel="noreferrer" style={{ color: '#1e9bd7', textDecoration: 'none' }}>
+                          {r.fundName}
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
           <div className="chat-input">

@@ -4,6 +4,7 @@ defmodule App.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      App.Repo,
       {Phoenix.PubSub, name: App.PubSub},
       AppWeb.Endpoint
     ]
@@ -18,4 +19,3 @@ defmodule App.Application do
     :ok
   end
 end
-

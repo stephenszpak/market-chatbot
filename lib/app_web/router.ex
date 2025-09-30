@@ -11,7 +11,7 @@ defmodule AppWeb.Router do
 
   scope "/api", AppWeb do
     pipe_through :api
-    post "/ask", APIController, :ask
+    post "/ask", FundSearchController, :ask
   end
 
   scope "/", AppWeb do
